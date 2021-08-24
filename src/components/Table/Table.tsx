@@ -1,81 +1,7 @@
-import { mdiOpenInNew } from "@mdi/js";
-import Icon from "@mdi/react";
-import { ReactNode, useMemo } from "react";
-import { Column, useTable } from "react-table";
+import { TableInstance } from "react-table";
 import { Body, BodyCell, BodyRow, Heading, HeadingCell, HeadingRow, Wrapper } from "./Table.styles";
 
-export interface TableProps {
-
-}
-
-type Data = {
-    preview: ReactNode;
-    col1: string;
-    col2: string;
-    actions: string;
-}
-
-export const Table = ({ }: TableProps) => {
-
-    const data = useMemo<Data[]>(
-        () => [
-            {
-                col1: 'Hello',
-                col2: 'World',
-                actions: 'Ações',
-                preview: <Icon
-                    size="14px"
-                    color="#09f"
-                    path={mdiOpenInNew}
-                />
-            },
-            {
-                col1: 'react-table',
-                col2: 'rocks',
-                actions: 'Ações',
-                preview: <Icon
-                    size="14px"
-                    color="#09f"
-                    path={mdiOpenInNew}
-                />
-            },
-            {
-                col1: 'whatever',
-                col2: 'you want',
-                actions: 'Ações',
-                preview: <Icon
-                    size="14px"
-                    color="#09f"
-                    path={mdiOpenInNew}
-                />
-            },
-        ],
-        []
-    );
-
-    const columns = useMemo<Column<Data>[]>(
-        () => [
-            {
-                Header: '',
-                accessor: 'preview',
-            },
-            {
-                Header: 'Column 1',
-                accessor: 'col1',
-            },
-            {
-                Header: 'Column 2',
-                accessor: 'col2',
-            },
-            {
-                Header: 'Ações',
-                accessor: 'actions',
-            },
-        ],
-        []
-    );
-
-    const table = useTable<Data>({ data, columns });
+export function Table<T extends Object> ({ instance }: {instance: TableInstance<T>}){
 
     const {
         getTableProps,
@@ -83,7 +9,7 @@ export const Table = ({ }: TableProps) => {
         headerGroups,
         rows,
         prepareRow,
-    } = table;
+    } = instance;
 
     console.log(`getTableProps: ${getTableProps}`);
     console.log(`getTableBodyProps: ${getTableBodyProps}`);
