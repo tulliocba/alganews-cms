@@ -1,7 +1,11 @@
 import { TableInstance } from "react-table";
 import { Body, BodyCell, BodyRow, Heading, HeadingCell, HeadingRow, Wrapper } from "./Table.styles";
 
-export function Table<T extends Object> ({ instance }: {instance: TableInstance<T>}){
+export interface TableProps<T extends Object> {
+    instance: TableInstance<T>
+}
+
+export const Table = <T extends Object>({ instance }: TableProps<T>) => {
 
     const {
         getTableProps,
@@ -10,12 +14,6 @@ export function Table<T extends Object> ({ instance }: {instance: TableInstance<
         rows,
         prepareRow,
     } = instance;
-
-    console.log(`getTableProps: ${getTableProps}`);
-    console.log(`getTableBodyProps: ${getTableBodyProps}`);
-    console.log(`headerGroups: ${headerGroups}`);
-    console.log(`rows: ${rows}`);
-    console.log(`prepareRow: ${prepareRow}`);
 
     return (
         <Wrapper {...getTableProps()} cellPadding={0} cellSpacing={0}>
