@@ -1,60 +1,68 @@
 import { Line } from 'react-chartjs-2';
+import { NoData } from '../NoData/NoData';
+import { Heading } from '../Typography/Heading';
+import { Wrapper } from './Chart.styles';
 
 export interface ChartProps {
-
+    data?: Chart.ChartData;
+    title: string;
 }
 
-const data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            fill: false,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgba(255, 99, 132, 0.2)',
-            yAxisID: 'y-axis-1',
-        },
-        {
-            label: '# of No Votes',
-            data: [1, 2, 1, 1, 2, 2],
-            fill: false,
-            backgroundColor: 'rgb(54, 162, 235)',
-            borderColor: 'rgba(54, 162, 235, 0.2)',
-            yAxisID: 'y-axis-2',
-        },
-    ],
-};
-
 const options: Chart.ChartOptions = {
-    maintainAspectRatio: false,
+    maintainAspectRatio: true,
+    elements: {
+        line: {
+            tension: 0
+        }
+    },
+    legend: {
+        display: true,
+        position: "bottom",
+        align: "center",
+        labels: {
+            usePointStyle: true
+        }
+    },
     scales: {
+        xAxes: [
+            {
+                display: true,
+                gridLines: {
+                    display: false
+                }
+            }
+        ],
         yAxes: [
             {
                 type: 'linear',
-                display: true,
+                display: false,
                 position: 'left',
-                id: 'y-axis-1',
-            },
-            {
-                type: 'linear',
-                display: true,
-                position: 'right',
-                id: 'y-axis-2',
-                gridLines: {
-                    display: false
-                },
+                id: 'cashflow',
             },
         ],
     },
 };
 
-export const Chart = ({ }: ChartProps) => {
+export const Chart = ({ data, title }: ChartProps) => {
 
-    return <div>
-        <Line
-            data={data}
-            options={options}
-        />
-    </div>
+    return <Wrapper>
+        <div style={{ marginBottom: '16px' }}>
+            <Heading level={3}>
+                {title}
+            </Heading>
+        </div>
+        {
+            data ?
+                <Line
+                    type="line"
+                    height={139}
+                    width={600}
+                    data={data}
+                    options={options}
+                />
+                :
+                <NoData height={139}/>
+        }
+
+    </Wrapper>
 }
