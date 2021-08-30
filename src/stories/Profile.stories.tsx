@@ -3,17 +3,8 @@ import { Meta, Story } from '@storybook/react';
 import { Profile, ProfileProps } from '../components/Profile';
 
 export default {
-  title: 'Example/Profile',
-  component: Profile,
-  argTypes: {
-     progress: {
-         control: {
-             type: 'range',
-             min: 0,
-             max: 100
-         }
-     }  
-  }
+    title: 'Example/Profile',
+    component: Profile,
 } as Meta;
 
 const Template: Story<ProfileProps> = (args) => <Profile {...args} />;
