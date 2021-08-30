@@ -5,6 +5,11 @@ import { SessionController, SessionControllerProps } from '../components/Session
 export default {
     title: 'Example/SessionController',
     component: SessionController,
+    argTypes: {
+        onLogout: {
+            action: 'logout'
+        }
+    }
 } as Meta;
 
 const Template: Story<SessionControllerProps> = (args) => <SessionController {...args} />;
@@ -12,6 +17,5 @@ const Template: Story<SessionControllerProps> = (args) => <SessionController {..
 export const Default = Template.bind({});
 Default.args = {
     name: 'Tulio Gabriel',
-    description: 'Editor a 3 anos',
-    onLogout: () => console.log('Test')
+    description: 'Editor a 3 anos'
 };

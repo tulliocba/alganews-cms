@@ -5,7 +5,7 @@ import { Wrapper } from "./SessionController.styles";
 export interface SessionControllerProps {
     name: string;
     description: string;
-    onLogout: () => void
+    onLogout: () => any
 }
 
 
