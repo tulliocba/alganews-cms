@@ -5,7 +5,7 @@ export default function NavBar() {
     return (
         <Menu>
             <MenuItem><NavLink exact to="/home">Home</NavLink></MenuItem>
-            <MenuItem><NavLink exact to="/contato">Contato</NavLink></MenuItem>
+            <MenuItem><NavLink exact to="/editores">Editores</NavLink></MenuItem>
         </Menu>
     );
 }

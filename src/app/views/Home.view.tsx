@@ -6,7 +6,7 @@ import { UserTopTags } from "../features/UserTopTags";
 import { UserEarnings } from "../features/UserEarnings.feature";
 import styled from "styled-components";
 
-export default function Home() {
+export default function HomeView() {
     usePageTitle('Home')
     return (
         <DefaultLayout>
