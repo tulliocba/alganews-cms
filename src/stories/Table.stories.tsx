@@ -4,7 +4,7 @@ import { ComponentMeta } from '@storybook/react';
 import { useMemo } from 'react';
 import { Column, useTable } from 'react-table';
 
-import { Table } from '../components/Table/Table';
+import { Table } from '../app/components/Table/Table';
 
 export default {
     title: 'Example/Table',
