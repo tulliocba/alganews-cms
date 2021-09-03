@@ -17,7 +17,11 @@ export const SessionController = ({ name, description, onLogout }: SessionContro
             <Name>{name}</Name>
             <Description>{description}</Description>
 
-            <Button variant="danger" label="Logout" onClick={onLogout} />
+            <Button
+                variant="danger"
+                label="Logout"
+                onClick={onLogout} 
+            />
 
         </Wrapper>
     );

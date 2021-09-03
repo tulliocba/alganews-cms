@@ -24,6 +24,7 @@ export const Wrapper = styled.label`
         border-radius: 0;
         border-bottom: 1px solid #274060;
         color: #274060;
+        background-color: transparent;
 
         &::placeholder {
             color: ${transparentize(0.5, '#274060')};

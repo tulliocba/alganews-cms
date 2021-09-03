@@ -6,6 +6,7 @@ export default function NavBar() {
         <Menu>
             <MenuItem><NavLink exact to="/home">Home</NavLink></MenuItem>
             <MenuItem><NavLink exact to="/editores">Editores</NavLink></MenuItem>
+            <MenuItem><NavLink exact to="/posts/criar">Novo post</NavLink></MenuItem>
         </Menu>
     );
 }
