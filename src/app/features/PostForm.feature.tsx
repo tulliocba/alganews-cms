@@ -3,6 +3,7 @@ import { Tag } from "react-tag-input";
 import styled from "styled-components";
 import { countWordsInMarkdown } from "../../core/utils/countWordsInMarkdown";
 import info from "../../core/utils/info";
+import { PostService } from "../../sdk/services/Post.service";
 import { Button } from "../components/Button/Button";
 import { ImageUpload } from "../components/ImageUpload";
 import { Input } from "../components/Input/Input";
@@ -14,12 +15,23 @@ export const PostForm = () => {
 
     const [tags, setTags] = useState<Tag[]>([]);
     const [body, setBody] = useState('');
+    const [title, setTitle] = useState('');
 
-    const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        const newPost = {
+            body,
+            title,
+            tags: tags.map(tag => tag.text),
+            imageUrl: ''
+        };
+
+        const insertedPost = await PostService.insertNewPost(newPost);
+
         info({
             title: "Post salvo com sucesso",
-            description: "Você acabou de salvar um post."
+            description: `Você acabou de creiar o post ${insertedPost.id}.`
         });
     }
 
@@ -27,6 +39,8 @@ export const PostForm = () => {
         <PostFormWrapper onSubmit={handleFormSubmit}>
             <Input
                 label="título"
+                value={title}
+                onChange={e => setTitle(e.target.value)}
                 placeholder="e.g.: Como fiquei rico aprendendo React"
             />
 

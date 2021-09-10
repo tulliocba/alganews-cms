@@ -1,10 +1,14 @@
 import Service from "../Service";
 
 import { Post } from "../@types";
+import { generateQueryString } from "../utils/generateQueryString";
 
 export class PostService extends Service {
-    static getAllPosts() {
-        return this.Http.get<Post.Paginated>('/posts')
+    static getAllPosts(search: Post.Query) {
+
+        const queryString = generateQueryString(search);
+
+        return this.Http.get<Post.Paginated>('/posts'.concat(queryString))
             .then(this.getData);
     }
 
@@ -12,7 +16,6 @@ export class PostService extends Service {
         return this.Http
             .post<Post.Detailed>('/posts', post)
             .then(this.getData);
-
     }
 
 }
