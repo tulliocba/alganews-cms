@@ -4,12 +4,13 @@ export interface ProfileProps {
     name: string;
     description: string;
     editorId: number;
+    avatarUrl?: string;
 }
 
-export const Profile = ({ name, description, editorId }: ProfileProps) => {
+export const Profile = ({ name, description, editorId, avatarUrl }: ProfileProps) => {
     return (
         <Wrapper to={`/editores/${editorId}`}>
-            <Avatar src="https://randomuser.me/api/portraits/men/62.jpg" alt="picture" />
+            <Avatar src={avatarUrl} alt="picture" />
 
             <Info>
                 <Name>{name}</Name>

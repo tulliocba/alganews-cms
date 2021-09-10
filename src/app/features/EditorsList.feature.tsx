@@ -1,26 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Profile } from "../components/Profile";
-import { PostService } from "../../sdk/services/Post.service";
+import { User } from "../../sdk/@types";
+import { UserService } from "../../sdk/services/User.service";
 
 export const EditorsList = () => {
 
+    const [editors, setEditors] = useState<User.EditorSummary[]>([])
+
     useEffect(() => {
-        const posts = PostService.getAllPosts({
-            size: 20,
-            page: 2,
-            sort: ['id', 'desc']
-        });
-        console.log(posts);
+        UserService.getAllEditors()
+            .then(setEditors);
     }, []);
 
     return (
         <Wrapper>
-            <Profile name="Tulio Gabriel" description="editor há 8 anos" editorId={1} />
-            <Profile name="João Silva" description="editor há 6 anos" editorId={1} />
-            <Profile name="Maria Aparecida" description="editora há 3 anos" editorId={1} />
-            <Profile name="Joana Santos" description="editora há 5 anos" editorId={1} />
-            <Profile name="José Sebastião" description="editor há 10 anos" editorId={1} />
+
+            {
+                editors.map(editor => (
+                    <Profile 
+                        key={editor.id} 
+                        name={editor.name} 
+                        description="editor há 8 anos" 
+                        editorId={editor.id}
+                        avatarUrl={editor.avatarUrls.small} />
+                ))
+            }
         </Wrapper>
     );
 }
