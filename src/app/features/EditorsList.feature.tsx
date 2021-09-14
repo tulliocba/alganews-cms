@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Profile } from "../components/Profile";
 import { User } from "../../sdk/@types";
 import { UserService } from "../../sdk/services/User.service";
+import { getEditorDescription } from "../../sdk/utils/getEditorDescription";
 
 export const EditorsList = () => {
 
@@ -21,7 +22,7 @@ export const EditorsList = () => {
                     <Profile 
                         key={editor.id} 
                         name={editor.name} 
-                        description="editor há 8 anos" 
+                        description={getEditorDescription(new Date(editor.createdAt))} 
                         editorId={editor.id}
                         avatarUrl={editor.avatarUrls.small} />
                 ))
