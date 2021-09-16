@@ -5,6 +5,7 @@ import { DefaultLayout } from "../layouts/Default";
 import { UserTopTags } from "../features/UserTopTags";
 import { UserEarnings } from "../features/UserEarnings.feature";
 import styled from "styled-components";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 export default function HomeView() {
     usePageTitle('Home')
@@ -15,8 +16,12 @@ export default function HomeView() {
                 <UserEarnings />
 
             </Div>
+
             <UserPerformance />            
-            <Posts />
+
+            <ErrorBoundary component="posts">
+                <Posts />
+            </ErrorBoundary>
         </DefaultLayout>
     );
 }

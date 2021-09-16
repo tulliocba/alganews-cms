@@ -1,6 +1,6 @@
 import { File } from "../@types";
 import { Service } from "../Service";
-import { v4 } from "uuid";
+import { v4 as uuid} from "uuid";
 
 export class FileService extends Service {
     private static getSignedUrl(fileInfo: File.UploadRequestInput) {
@@ -26,7 +26,7 @@ export class FileService extends Service {
     }
 
     private static generateFileName(extension: string) {
-        return `${v4()}.${extension}`
+        return `${uuid()}.${extension}`
     }
 
     static async upload(file: File) {

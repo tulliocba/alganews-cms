@@ -13,7 +13,7 @@ export const ValueDescriptor = ({ description, isCurrency, value, color = 'defau
             <span className="Description">{description}:</span>
             <div>
                 {
-                    isCurrency && <span className="Currency">{'R$'}</span>
+                    isCurrency && <span className="Currency">{'R$ '}</span>
                 }
 
                 <span className="Value">{value.toLocaleString('pt-br')}</span>
