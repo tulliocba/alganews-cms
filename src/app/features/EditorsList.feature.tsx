@@ -4,8 +4,9 @@ import { Profile } from "../components/Profile";
 import { User } from "../../sdk/@types";
 import { UserService } from "../../sdk/services/User.service";
 import { getEditorDescription } from "../../sdk/utils/getEditorDescription";
+import { withBoundaryError } from "../../core/hoc/withBondaryError";
 
-export const EditorsList = () => {
+export const EditorsList = withBoundaryError(() => {
 
     const [editors, setEditors] = useState<User.EditorSummary[]>([])
 
@@ -29,7 +30,7 @@ export const EditorsList = () => {
             }
         </Wrapper>
     );
-}
+});
 
 const Wrapper = styled.div`
     display: grid;

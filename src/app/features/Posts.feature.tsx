@@ -6,8 +6,9 @@ import { Table } from "../components/Table/Table";
 import { Post } from "../../sdk/@types"
 import { PostService } from "../../sdk/services/Post.service";
 import { format } from "date-fns";
+import { withBoundaryError } from "../../core/hoc/withBondaryError";
 
-export const Posts = () => {
+export const Posts = withBoundaryError(() => {
     const [posts, setPosts] = useState<Post.Paginated>();
     const [error, setError] = useState<Error>();
 
@@ -92,4 +93,4 @@ export const Posts = () => {
         });
 
     return <Table instance={instance} />
-}
+}, "tags");

@@ -2,6 +2,7 @@ import { transparentize } from "polished";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
+import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { User } from "../../sdk/@types";
 import { UserService } from "../../sdk/services/User.service";
 import { getEditorDescription } from "../../sdk/utils/getEditorDescription";
@@ -13,7 +14,7 @@ interface EditorProfileProps {
   hidePersonalData?: boolean;
 }
 
-export const EditorProfile = ({ hidePersonalData }: EditorProfileProps) => {
+export const EditorProfile = withBoundaryError(({ hidePersonalData }: EditorProfileProps) => {
   const [editor, setEditor] = useState<User.EditorDetailed>();
   const { id: editorId } = useParams<{ id: string }>();
 
@@ -69,7 +70,7 @@ export const EditorProfile = ({ hidePersonalData }: EditorProfileProps) => {
       </EditorEarnings>
     }
   </EditorProfileWrapper>
-}
+});
 
 const EditorHeadline = styled.div`
   display: grid;

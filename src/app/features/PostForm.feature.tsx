@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Tag } from "react-tag-input";
 import styled from "styled-components";
+import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { countWordsInMarkdown } from "../../core/utils/countWordsInMarkdown";
 import info from "../../core/utils/info";
 import { PostService } from "../../sdk/services/Post.service";
@@ -11,7 +12,7 @@ import { MarkdownEditor } from "../components/MarkdownEditor";
 import { TagInput } from "../components/TagInput";
 import { WordPriceCounter } from "../components/WordPriceCounter";
 
-export const PostForm = () => {
+export const PostForm = withBoundaryError(() => {
 
     const [tags, setTags] = useState<Tag[]>([]);
     const [body, setBody] = useState('');
@@ -63,7 +64,7 @@ export const PostForm = () => {
             </PostFormSubmitWrapper>
         </PostFormWrapper>
     );
-}
+});
 
 const PostFormWrapper = styled.form`
     display: flex;
