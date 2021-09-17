@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { User } from "../../sdk/@types";
@@ -13,7 +14,12 @@ export const UserEarnings = withBoundaryError(() => {
         .then(setUser)
     }, []);
 
-    if (!user) return null;
+    if (!user) return <Wrapper>
+        <Skeleton height={40} width={150}/>
+        <Skeleton height={40} width={150}/>
+        <Skeleton height={40} width={150}/>
+        <Skeleton height={40} width={150}/>
+    </Wrapper>;
 
     return (
         <Wrapper>

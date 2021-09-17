@@ -3,6 +3,7 @@ import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { transformEditorMonthlyEarningsIntoChartJs } from "../../core/utils/transformEditorMonthlyEarningsIntoChartJs";
 import { MetricService } from "../../sdk/services/Metric.service";
 import { Chart, ChartProps } from "../components/Chart/Chart";
+import Skeleton from "react-loading-skeleton";
 
 export const UserPerformance = withBoundaryError(() => {
 
@@ -18,7 +19,10 @@ export const UserPerformance = withBoundaryError(() => {
 
   if (error) throw error;
 
-  if (!editorEarnings) return null;
+  if (!editorEarnings) 
+  return <div>
+    <Skeleton height={227}/>
+  </div>;
 
   return <Chart title="Média de performance nos últimos 6 meses" data={editorEarnings} />
 }, "performance");
