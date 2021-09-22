@@ -8,6 +8,7 @@ import { PostService } from "../../sdk/services/Post.service";
 import { Button } from "../components/Button/Button";
 import { ImageUpload } from "../components/ImageUpload";
 import { Input } from "../components/Input/Input";
+import { Loading } from "../components/Loading";
 import { MarkdownEditor } from "../components/MarkdownEditor";
 import { TagInput } from "../components/TagInput";
 import { WordPriceCounter } from "../components/WordPriceCounter";
@@ -18,27 +19,37 @@ export const PostForm = withBoundaryError(() => {
     const [body, setBody] = useState('');
     const [title, setTitle] = useState('');
     const [imageUrl, setImageUrl] = useState('');
+    const [publishing, setPublishing] = useState(false);
+
+
 
     const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const newPost = {
-            body,
-            title,
-            tags: tags.map(tag => tag.text),
-            imageUrl
-        };
+        try {
+            setPublishing(true);
 
-        const insertedPost = await PostService.insertNewPost(newPost);
-
-        info({
-            title: "Post salvo com sucesso",
-            description: `Você acabou de creiar o post ${insertedPost.id}.`
-        });
+            const newPost = {
+                body,
+                title,
+                tags: tags.map(tag => tag.text),
+                imageUrl
+            };
+    
+            const insertedPost = await PostService.insertNewPost(newPost);
+    
+            info({
+                title: "Post salvo com sucesso",
+                description: `Você acabou de creiar o post ${insertedPost.id}.`
+            });
+        } finally {
+            setPublishing(false);
+        }
     }
 
     return (
         <PostFormWrapper onSubmit={handleFormSubmit}>
+            <Loading show={publishing}/>
             <Input
                 label="título"
                 value={title}
