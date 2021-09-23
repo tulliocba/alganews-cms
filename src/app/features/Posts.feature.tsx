@@ -1,29 +1,35 @@
 import { mdiOpenInNew } from "@mdi/js";
 import Icon from "@mdi/react";
 import { useEffect, useMemo, useState } from "react";
-import { Column, useTable } from "react-table";
+import { Column, usePagination, useTable } from "react-table";
 import { Table } from "../components/Table/Table";
 import { Post } from "../../sdk/@types"
 import { PostService } from "../../sdk/services/Post.service";
 import { format } from "date-fns";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import Skeleton from "react-loading-skeleton";
+import { Loading } from "../components/Loading";
 
 export const Posts = withBoundaryError(() => {
     const [posts, setPosts] = useState<Post.Paginated>();
     const [error, setError] = useState<Error>();
+    const [page, setPage] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        setLoading(true);
+
         PostService.getAllPosts(
             {
-                page: 0,
-                size: 7,
+                page,
+                size: 3,
                 showAll: true,
                 sort: ['createdAt', 'desc']
             }
         ).then(setPosts)
-            .catch(err => setError(new Error(err.message)));
-    }, [])
+            .catch(err => setError(new Error(err.message)))
+            .finally(() => setLoading(false));
+    }, [page])
 
     if (error) throw error;
 
@@ -88,23 +94,31 @@ export const Posts = withBoundaryError(() => {
     )
 
     const instance = useTable<Post.Summary>(
-        { 
-            data: posts?.content || [], 
-            columns 
-        });
+        {
+            data: posts?.content || [],
+            columns,
+            manualPagination: true,
+            initialState: { pageIndex: 0 },
+            pageCount: posts?.totalPages
+        },
+        usePagination
+    );
 
     if (!posts) {
         return <div>
-            <Skeleton height={32}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
-            <Skeleton height={40}/>
+            <Skeleton height={32} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
+            <Skeleton height={40} />
         </div>
     }
-
-    return <Table instance={instance} />
+    // come back here and make the skeleton work with pagination
+    return <>
+        <Loading show={loading} />
+        <Table instance={instance} onPaginate={setPage} />
+    </>
 }, "tags");
