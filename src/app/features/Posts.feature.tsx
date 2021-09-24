@@ -9,6 +9,8 @@ import { format } from "date-fns";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import Skeleton from "react-loading-skeleton";
 import { Loading } from "../components/Loading";
+import { PostPreview } from "./PostPreview.feature";
+import { modal } from "../../core/utils/modal"
 
 export const Posts = withBoundaryError(() => {
     const [posts, setPosts] = useState<Post.Paginated>();
@@ -52,7 +54,15 @@ export const Posts = withBoundaryError(() => {
                         alt={props.row.original.editor.name}
                         title={props.row.original.editor.name}
                     />
-                    {props.value}
+                    <a
+                        href={`/posts/${props.row.original.id}`}
+                        onClick={e => {
+                            e.preventDefault();
+                            modal({ children: <PostPreview postId={props.row.original.id} /> })
+                        }}
+                    >
+                        {props.value}
+                    </a>
                 </div>
             },
             {
