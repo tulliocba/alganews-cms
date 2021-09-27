@@ -10,6 +10,7 @@ import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import Skeleton from "react-loading-skeleton";
 import { Loading } from "../components/Loading";
 import { PostPreview } from "./PostPreview.feature";
+import { PostTitleAnchor } from "../components/PostTitleAnchor"
 import { modal } from "../../core/utils/modal"
 
 export const Posts = withBoundaryError(() => {
@@ -46,7 +47,13 @@ export const Posts = withBoundaryError(() => {
                 Header: () => <div style={{ textAlign: 'left' }}>Título</div>,
                 accessor: 'title',
                 width: 320,
-                Cell: (props) => <div style={{ textAlign: 'left', display: 'flex', gap: 8, alignItems: 'center' }}>
+                Cell: (props) => <div style={{ 
+                    textAlign: 'left', 
+                    display: 'flex', 
+                    gap: 8, 
+                    alignItems: 'center',
+                    maxWidth: 270
+                    }}>
                     <img
                         width={24}
                         height={24}
@@ -54,7 +61,8 @@ export const Posts = withBoundaryError(() => {
                         alt={props.row.original.editor.name}
                         title={props.row.original.editor.name}
                     />
-                    <a
+                    <PostTitleAnchor
+                        title={props.value}
                         href={`/posts/${props.row.original.id}`}
                         onClick={e => {
                             e.preventDefault();
@@ -62,7 +70,7 @@ export const Posts = withBoundaryError(() => {
                         }}
                     >
                         {props.value}
-                    </a>
+                    </PostTitleAnchor>
                 </div>
             },
             {
