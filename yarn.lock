@@ -4989,6 +4989,15 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
+cms-alganews-sdk@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cms-alganews-sdk/-/cms-alganews-sdk-2.0.0.tgz#0632981eb231b74482fc56274d98436e24256be9"
+  integrity sha512-CPTjd+6bZ8WSl4JoDd38PVVzKJlPMs0fryIkolrO3mIDxWIgSZfUjZjz79uZILADRVovXtGGro5vUz9bFYEzpg==
+  dependencies:
+    axios "^0.21.4"
+    date-fns "^2.24.0"
+    uuid "^8.3.2"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -5736,6 +5745,11 @@ date-fns@^2.23.0:
   version "2.23.0"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.23.0.tgz#4e886c941659af0cf7b30fafdd1eaa37e88788a9"
   integrity sha512-5ycpauovVyAk0kXNZz6ZoB9AYMZB4DObse7P3BPWmyEjXNORTI8EJ6X0uaSAq4sCHzM1uajzrkr6HnsLQpxGXA==
+
+date-fns@^2.24.0:
+  version "2.24.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.24.0.tgz#7d86dc0d93c87b76b63d213b4413337cfd1c105d"
+  integrity sha512-6ujwvwgPID6zbI0o7UbURi2vlLDR9uP26+tW6Lg+Ji3w7dd0i3DOcjcClLjLPranT60SSEFBwdSyYwn/ZkPIuw==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
