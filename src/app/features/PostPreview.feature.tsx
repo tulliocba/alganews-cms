@@ -1,11 +1,11 @@
+import { PostService } from "cms-alganews-sdk";
+import { Post } from "cms-alganews-sdk/dist/@types";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError"
 import confirm from "../../core/utils/confirm";
 import info from "../../core/utils/info";
 import { modal } from "../../core/utils/modal";
-import { Post } from "../../sdk/@types";
-import { PostService } from "../../sdk/services/Post.service";
 import { Button } from "../components/Button/Button";
 import { Loading } from "../components/Loading";
 import { MarkdownEditor } from "../components/MarkdownEditor";

@@ -1,11 +1,10 @@
+import { getEditorDescription, UserService } from "cms-alganews-sdk";
+import { User } from "cms-alganews-sdk/dist/@types";
 import { transparentize } from "polished";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
-import { User } from "../../sdk/@types";
-import { UserService } from "../../sdk/services/User.service";
-import { getEditorDescription } from "../../sdk/utils/getEditorDescription";
 import { FieldDescriptor } from "../components/FieldDescriptor/FieldDescriptor";
 import { ProgressBar } from "../components/ProgressBar/ProgressBar";
 import { ValueDescriptor } from "../components/ValueDescriptor/ValueDescriptor";

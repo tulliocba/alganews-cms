@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Profile } from "../components/Profile";
-import { User } from "../../sdk/@types";
-import { UserService } from "../../sdk/services/User.service";
-import { getEditorDescription } from "../../sdk/utils/getEditorDescription";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
+import { User } from "cms-alganews-sdk/dist/@types";
+import { getEditorDescription, UserService } from "cms-alganews-sdk";
 
 export const EditorsList = withBoundaryError(() => {
 

@@ -1,7 +1,7 @@
 import { ChartProps } from "../../app/components/Chart/Chart";
-import { Metric } from "../../sdk/@types";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { Metric } from "cms-alganews-sdk/dist/@types";
 
 export const transformEditorMonthlyEarningsIntoChartJs = (
     editorEarnings: Metric.EditorMonthlyEarnings): ChartProps['data'] => {

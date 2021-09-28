@@ -1,3 +1,4 @@
+import { PostService } from "cms-alganews-sdk";
 import { FormEvent, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Tag } from "react-tag-input";
@@ -5,7 +6,6 @@ import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { countWordsInMarkdown } from "../../core/utils/countWordsInMarkdown";
 import info from "../../core/utils/info";
-import { PostService } from "../../sdk/services/Post.service";
 import { Button } from "../components/Button/Button";
 import { ImageUpload } from "../components/ImageUpload";
 import { Input } from "../components/Input/Input";

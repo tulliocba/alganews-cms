@@ -1,9 +1,9 @@
+import { UserService } from "cms-alganews-sdk";
+import { User } from "cms-alganews-sdk/dist/@types";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
-import { User } from "../../sdk/@types";
-import { UserService } from "../../sdk/services/User.service";
 import { ValueDescriptor } from "../components/ValueDescriptor/ValueDescriptor";
 
 export const UserEarnings = withBoundaryError(() => {

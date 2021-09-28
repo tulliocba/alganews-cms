@@ -3,8 +3,6 @@ import Icon from "@mdi/react";
 import { useEffect, useMemo, useState } from "react";
 import { Column, usePagination, useTable } from "react-table";
 import { Table } from "../components/Table/Table";
-import { Post } from "../../sdk/@types"
-import { PostService } from "../../sdk/services/Post.service";
 import { format } from "date-fns";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import Skeleton from "react-loading-skeleton";
@@ -12,6 +10,8 @@ import { Loading } from "../components/Loading";
 import { PostPreview } from "./PostPreview.feature";
 import { PostTitleAnchor } from "../components/PostTitleAnchor"
 import { modal } from "../../core/utils/modal"
+import { Post } from "cms-alganews-sdk/dist/@types";
+import { PostService } from "cms-alganews-sdk";
 
 export const Posts = withBoundaryError(() => {
     const [posts, setPosts] = useState<Post.Paginated>();

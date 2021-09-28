@@ -1,9 +1,9 @@
+import { MetricService } from "cms-alganews-sdk";
+import { Metric } from "cms-alganews-sdk/dist/@types";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
-import { Metric } from "../../sdk/@types";
-import { MetricService } from "../../sdk/services/Metric.service";
 import { CircleChart } from "../components/CircleChart";
 
 export const UserTopTags = withBoundaryError(() => {

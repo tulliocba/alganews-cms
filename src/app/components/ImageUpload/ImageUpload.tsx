@@ -1,6 +1,7 @@
 import { mdiUpload } from "@mdi/js";
 import Icon from "@mdi/react";
 import { ChangeEvent, useEffect, useState } from "react";
+import {FileService} from "cms-alganews-sdk";
 import { Button } from "../Button/Button";
 import { Loading } from "../Loading";
 import { ImagePreview, ImagePreviewWrapper, Input, Label, Wrapper } from "./ImageUpload.styles";

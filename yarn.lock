@@ -4989,10 +4989,10 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
-cms-alganews-sdk@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/cms-alganews-sdk/-/cms-alganews-sdk-2.0.0.tgz#0632981eb231b74482fc56274d98436e24256be9"
-  integrity sha512-CPTjd+6bZ8WSl4JoDd38PVVzKJlPMs0fryIkolrO3mIDxWIgSZfUjZjz79uZILADRVovXtGGro5vUz9bFYEzpg==
+cms-alganews-sdk@2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/cms-alganews-sdk/-/cms-alganews-sdk-2.0.2.tgz#21b9fe6f6afc32da055a523f00a9bd47cc5efbfe"
+  integrity sha512-N8vURvEsuIYXmVi1BOtPayfSD2dpjYN9pSyTLj/FTpT958g5fvoWMxNxYqSC5N6ugtLbWglq3bIp8VSdHDRk/Q==
   dependencies:
     axios "^0.21.4"
     date-fns "^2.24.0"

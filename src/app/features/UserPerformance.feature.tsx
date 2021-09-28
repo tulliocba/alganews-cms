@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { withBoundaryError } from "../../core/hoc/withBondaryError";
 import { transformEditorMonthlyEarningsIntoChartJs } from "../../core/utils/transformEditorMonthlyEarningsIntoChartJs";
-import { MetricService } from "../../sdk/services/Metric.service";
 import { Chart, ChartProps } from "../components/Chart/Chart";
 import Skeleton from "react-loading-skeleton";
+import { MetricService } from "cms-alganews-sdk";
 
 export const UserPerformance = withBoundaryError(() => {
 
