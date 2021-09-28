@@ -71,6 +71,7 @@ export const PostPreview = withBoundaryError(({ postId }: PostPreviewProps) => {
           variant={'primary'}
           label={'Editar'}
           disabled={post.published}
+          onClick={() => window.location.pathname = `/posts/editar/${postId}`}
         />
       </PostPreviewActions>
     </PostPreviewHeading>

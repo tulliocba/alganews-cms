@@ -1,6 +1,6 @@
 import { mdiUpload } from "@mdi/js";
 import Icon from "@mdi/react";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FileService } from "../../../sdk/services/File.service";
 import { Button } from "../Button/Button";
 import { Loading } from "../Loading";
@@ -8,13 +8,14 @@ import { ImagePreview, ImagePreviewWrapper, Input, Label, Wrapper } from "./Imag
 
 export interface ImageUploadProps {
     label: string;
-    onImageUpload: (imageUrl: string) => any
+    onImageUpload: (imageUrl: string) => any;
+    preview?: string;
 
 }
 
-export const ImageUpload = ({ label, onImageUpload }: ImageUploadProps) => {
+export const ImageUpload = ({ label, onImageUpload, preview }: ImageUploadProps) => {
 
-    const [filePreview, setFilePreview] = useState<string | null>(null);
+    const [filePreview, setFilePreview] = useState<string | undefined>(undefined);
     const [uploadingImage, setUploadingImage] = useState(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -40,6 +41,10 @@ export const ImageUpload = ({ label, onImageUpload }: ImageUploadProps) => {
         }
     }
 
+    useEffect(() => {
+        setFilePreview(preview)
+    }, [preview]);
+
     if (filePreview) {
         return <ImagePreviewWrapper>
             <Loading show={uploadingImage} />
@@ -47,7 +52,7 @@ export const ImageUpload = ({ label, onImageUpload }: ImageUploadProps) => {
                 <Button
                     variant="primary"
                     label="Remover imagem"
-                    onClick={() => setFilePreview(null)}
+                    onClick={() => setFilePreview(undefined)}
                 />
             </ImagePreview>
         </ImagePreviewWrapper>
