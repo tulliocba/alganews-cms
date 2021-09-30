@@ -1,5 +1,4 @@
-import { UserService } from "cms-alganews-sdk";
-import { User } from "cms-alganews-sdk/dist/@types";
+import { UserService, User } from "cms-alganews-sdk";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";

@@ -10,8 +10,7 @@ import { Loading } from "../components/Loading";
 import { PostPreview } from "./PostPreview.feature";
 import { PostTitleAnchor } from "../components/PostTitleAnchor"
 import { modal } from "../../core/utils/modal"
-import { Post } from "cms-alganews-sdk/dist/@types";
-import { PostService } from "cms-alganews-sdk";
+import { PostService, Post } from "cms-alganews-sdk";
 
 export const Posts = withBoundaryError(() => {
     const [posts, setPosts] = useState<Post.Paginated>();

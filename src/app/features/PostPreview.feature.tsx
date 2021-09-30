@@ -1,5 +1,4 @@
-import { PostService } from "cms-alganews-sdk";
-import { Post } from "cms-alganews-sdk/dist/@types";
+import { PostService, Post } from "cms-alganews-sdk";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { withBoundaryError } from "../../core/hoc/withBondaryError"

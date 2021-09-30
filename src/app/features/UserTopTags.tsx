@@ -1,5 +1,4 @@
-import { MetricService } from "cms-alganews-sdk";
-import { Metric } from "cms-alganews-sdk/dist/@types";
+import { MetricService, Metric } from "cms-alganews-sdk";
 import { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import styled from "styled-components";
