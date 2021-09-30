@@ -1,5 +1,4 @@
-import { getEditorDescription, UserService } from "cms-alganews-sdk";
-import { User } from "cms-alganews-sdk/dist/@types";
+import { getEditorDescription, UserService, User } from "cms-alganews-sdk";
 import { transparentize } from "polished";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
