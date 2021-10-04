@@ -5,9 +5,17 @@ import { DefaultLayout } from "../layouts/Default";
 import { UserTopTags } from "../features/UserTopTags";
 import { UserEarnings } from "../features/UserEarnings.feature";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { selectPaginatedPosts } from "../../core/selectors/selectPaginatedPosts";
 
 export default function HomeView() {
     usePageTitle('Home')
+
+    const dispatch = useDispatch();
+    // creates a local state using as reference the global state.
+    const paginatedPosts = useSelector(selectPaginatedPosts);
+
+
     return (
         <DefaultLayout>
             <Div>

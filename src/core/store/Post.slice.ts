@@ -1,8 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { Post } from "cms-alganews-sdk";
+import { createAsyncThunk, createReducer } from "@reduxjs/toolkit";
+import { Post, PostService } from "cms-alganews-sdk";
 
 interface PostSliceState {
   paginated?: Post.Paginated;
+  fetching?: boolean;
 }
 
 const initialState: PostSliceState = {
@@ -13,12 +14,18 @@ const initialState: PostSliceState = {
     totalPages: 1,
     content: [],
   },
+  fetching: false,
 };
 
-const postSlice = createSlice({
-  name: "post",
-  initialState,
-  reducers: {},
-});
+export const fetchPosts = createAsyncThunk(
+  "post/fetchPosts",
+  async function (query: Post.Query) {
+    return await PostService.getAllPosts(query);
+  }
+);
 
-export const postReducer = postSlice.reducer;
+export const postReducer = createReducer(initialState, (builder) => {
+  builder.addCase(fetchPosts.fulfilled, (state, action) => {
+    state.paginated = action.payload;
+  });
+});
