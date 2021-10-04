@@ -1,16 +1,15 @@
 import { Post } from "cms-alganews-sdk";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectPaginatedPosts } from "../selectors/selectPaginatedPosts";
-import { selectPostsFetching } from "../selectors/selectPostsFetching";
-import * as PostAction from "../store/Post.slice";
+import { RootState } from "../store";
+import * as PostAction from "../store/Post.store";
 
 export const usePosts = () => {
   const dispatch = useDispatch();
 
-  const paginatedPosts = useSelector(selectPaginatedPosts);
-
-  const loading = useSelector(selectPostsFetching);
+  const paginatedPosts = useSelector((state: RootState) => state.post.paginated);
+  const counter = useSelector((state: RootState) => state.post.counter);
+  const loading = useSelector((state: RootState) => state.post.loading);
 
   const fetchPosts = useCallback(
     async (query: Post.Query) => {
@@ -23,5 +22,6 @@ export const usePosts = () => {
     paginatedPosts,
     loading,
     fetchPosts,
+    counter,
   };
 };
