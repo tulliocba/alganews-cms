@@ -3,11 +3,11 @@ import { EditorsList } from "../features/EditorsList.feature";
 import { DefaultLayout } from "../layouts/Default";
 
 export const EditorsListView = () => {
-    usePageTitle("Lista de editores");
+  usePageTitle("Lista de editores");
 
-    return (
-        <DefaultLayout>
-            <EditorsList />
-        </DefaultLayout>
-    );
-}
+  return (
+    <DefaultLayout>
+      <EditorsList />
+    </DefaultLayout>
+  );
+};
