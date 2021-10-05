@@ -1,89 +1,66 @@
-import { PostService, Post } from "cms-alganews-sdk";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-import { withBoundaryError } from "../../core/hoc/withBondaryError"
+import { withBoundaryError } from "../../core/hoc/withBondaryError";
+import { useSinglePost } from "../../core/hooks/useSinglePost";
 import confirm from "../../core/utils/confirm";
-import info from "../../core/utils/info";
 import { modal } from "../../core/utils/modal";
 import { Button } from "../components/Button/Button";
 import { Loading } from "../components/Loading";
 import { MarkdownEditor } from "../components/MarkdownEditor";
 
 interface PostPreviewProps {
-  postId: number
+  postId: number;
 }
 
-
 export const PostPreview = withBoundaryError(({ postId }: PostPreviewProps) => {
-  const [post, setPost] = useState<Post.Detailed>();
-  const [loading, setLoading] = useState(false);
-
-  const publishPost = async () => {
-    await PostService.publishExistingPost(postId);
-    
-    info({
-      title: 'Post publicado',
-      description: 'Você publicou o post com sucesso.'
-    });
-  }
+  const { fetchPost, loading, post, publishPost } = useSinglePost();
 
   const reopenModal = () => {
     modal({
-      children: <PostPreview postId={postId} />
+      children: <PostPreview postId={postId} />,
     });
-  }
+  };
 
   useEffect(() => {
-    setLoading(true)
-    PostService
-      .getExistingPost(postId)
-      .then(setPost)
-      .finally(() => setLoading(false))
-  }, [postId])
+    fetchPost(postId);
+  }, [postId, fetchPost]);
 
-  if (loading)
-    return <Loading show />
+  if (loading) return <Loading show />;
 
-  if (!post)
-    return null
-  return <PostPreviewWrapper>
-    <PostPreviewHeading>
-      <PostPreviewTitle>
-        {post.title}
-      </PostPreviewTitle>
-      <PostPreviewActions>
-        <Button
-          variant={'danger'}
-          label={'Publicar'}
-          disabled={post.published}
-          onClick={() => {
-            confirm(
-              {
-                title: 'Publicar o post? ',
+  if (!post) return null;
+  return (
+    <PostPreviewWrapper>
+      <PostPreviewHeading>
+        <PostPreviewTitle>{post.title}</PostPreviewTitle>
+        <PostPreviewActions>
+          <Button
+            variant={"danger"}
+            label={"Publicar"}
+            disabled={post.published}
+            onClick={() => {
+              confirm({
+                title: "Publicar o post? ",
                 onConfirm: publishPost,
-                onCancel: reopenModal
-              }
-            )
-          }}
-        />
-        <Button
-          variant={'primary'}
-          label={'Editar'}
-          disabled={post.published}
-          onClick={() => window.location.pathname = `/posts/editar/${postId}`}
-        />
-      </PostPreviewActions>
-    </PostPreviewHeading>
-    <PostPreviewImage
-      src={post.imageUrls.medium}
-    />
-    <PostPreviewContent>
-      <MarkdownEditor
-        readOnly
-        value={post.body}
-      />
-    </PostPreviewContent>
-  </PostPreviewWrapper>
+                onCancel: reopenModal,
+              });
+            }}
+          />
+          <Button
+            variant={"primary"}
+            label={"Editar"}
+            disabled={post.published}
+            onClick={() =>
+              (window.location.pathname = `/posts/editar/${postId}`)
+            }
+          />
+        </PostPreviewActions>
+      </PostPreviewHeading>
+      <PostPreviewImage src={post.imageUrls.medium} />
+      <PostPreviewContent>
+        <MarkdownEditor readOnly value={post.body} />
+      </PostPreviewContent>
+    </PostPreviewWrapper>
+  );
 });
 
 const PostPreviewWrapper = styled.div`
@@ -96,29 +73,28 @@ const PostPreviewWrapper = styled.div`
   flex-direction: column;
   max-height: 70vh;
   overflow-y: auto;
-  box-shadow: 0 6px 6px rgba(0,0,0,.05);
-`
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.05);
+`;
 
 const PostPreviewHeading = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const PostPreviewTitle = styled.h2`
   font-size: 18px;
   font-weight: 600;
-`
+`;
 
 const PostPreviewActions = styled.div`
   display: flex;
   gap: 8px;
-`
+`;
 
 const PostPreviewImage = styled.img`
   height: 240px;
   width: 100%;
   object-fit: cover;
-`
+`;
 
-const PostPreviewContent = styled.div`
-`
+const PostPreviewContent = styled.div``;
